@@ -2,6 +2,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { SWRConfig } from "swr";
 
+import App from "./App";
 import "./index.scss";
 
 const container = document.getElementById("app");
@@ -12,7 +13,10 @@ root.render(
       value={{
         fetcher: (resource: string, init: RequestInit) =>
           fetch(resource, init).then((res) => res.json()),
+        provider: () => new Map(),
       }}
-    ></SWRConfig>
+    >
+      <App />
+    </SWRConfig>
   </React.StrictMode>,
 );
